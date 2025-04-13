@@ -31,11 +31,15 @@ class FFNN(nn.Module):
         return self.loss(predicted_vector, gold_label)
 
     def forward(self, input_vector):
-        # [to fill] obtain first hidden layer representation
-
+       # [to fill] obtain first hidden layer representation
+        hidden_layer = self.activation(self.W1(input_vector))   # pass input vector through first linear layer W1
+                                                                # and then apply ReLU function to that tensor
         # [to fill] obtain output layer representation
-
+        output_layer = self.W2(hidden_layer)                    # pass hidden layer through second linear layer W2
+                                                                # output layer contains un-normalized scores for each of the five ratings
         # [to fill] obtain probability dist.
+        predicted_vector = self.softmax(output_layer)           # apply softmax function to normalize output layer and
+                                                                # convert scores into probability distribution
 
         return predicted_vector
 
